@@ -52,10 +52,11 @@ function catAndMouse(mouse, cat1, cat2) {
   let winner;
   if (cat1Distance === cat2Distance) {
     return 'os gatos trombam e o rato foge';
-  } else if (cat1Distance > cat2Distance) {
+  }
+  if (cat1Distance > cat2Distance) {
     winner = 'cat2';
   } else {
-  winner = 'cat1';
+    winner = 'cat1';
   }
   return winner;
 }
