@@ -1,10 +1,8 @@
 // Desafio 1
 function compareTrue(a, b) {
-  
   if (a && b) {
     return true;
   }
-
   return false;
 }
 
@@ -21,7 +19,7 @@ function splitSentence(string) {
 
 // Desafio 4
 function concatName(array) {
-  return `${array[array.length - 1]}, ${array[0]}`
+  return `${array[array.length - 1]}, ${array[0]}`;
 }
 
 // Desafio 5
@@ -32,46 +30,36 @@ function footballPoints(wins, ties) {
 
 // Desafio 6
 function highestCount(array) {
-  
   let highestCount = 0;
   let highestNumber = array[0];
-
   for (const i in array) {
     if (array[i] > highestNumber) {
       highestNumber = array[i];
     }
   }
-
   for (const i in array) {
     if (array[i] == highestNumber) {
       highestCount += 1;
     }
   }
-
   return highestCount;
 }
 
 // Desafio 7
 function catAndMouse(mouse, cat1, cat2) {
-  
   let cat1Distance = Math.abs(mouse - cat1);
   let cat2Distance = Math.abs(mouse - cat2);
   let winner;
-
   if (cat1Distance == cat2Distance) {
     return 'os gatos trombam e o rato foge';
   }
-
   cat1Distance > cat2Distance ? winner = 'cat2' : winner = 'cat1';
-
   return winner;
 }
 
 // Desafio 8
 function fizzBuzz(array) {
-  
   const fizzBuzz = [];
-
   for (const i in array) {
     if (array[i] % 3 == 0 && array[i] % 5 == 0) {
       fizzBuzz.push('fizzBuzz');
@@ -83,17 +71,13 @@ function fizzBuzz(array) {
       fizzBuzz.push('bug!');
     }
   }
-
   return fizzBuzz;
 }
 
 // Desafio 9
 function encode(string) {
-  
   let encodedString = [];
-
   for (const i in string) {
-  
     switch (string[i]) {
       case 'a':
         encodedString[i] = '1';
@@ -114,17 +98,12 @@ function encode(string) {
         encodedString[i] = string[i];
         break;
     }
-    
   }
-  
   return encodedString.join('');
 }
 function decode(string) {
-  
   let decodedString = [];
-
   for (const letter in string) {
-    
     switch (string[letter]) {
       case '1':
         decodedString[letter] = 'a';
@@ -145,24 +124,19 @@ function decode(string) {
         decodedString[letter] = string[letter];
         break;
     }
-    
   }
-  
   return decodedString.join('');
 }
 
 // Desafio 10
 function techList(array, string) {
   if (array == undefined || string == undefined || array.length == 0 || string.length == 0) {
-    return 'Vazio!'
+    return 'Vazio!';
   }
-
   let techObject = [];
-
   for (const i in array) {
     techObject[i] = {tech: array.sort()[i], name: string};
   }
-    
   return techObject;
 }
 
