@@ -25,14 +25,13 @@ function numberFormatting(array) {
   return array;
 }
 function generatePhoneNumber(array) {
-  let telephoneNumber = array;
-  if (telephoneNumber.length !== 11) {
+  if (array.length !== 11) {
     return 'Array com tamanho incorreto.';
   }
-  if (!repeatCheck(telephoneNumber)) {
+  if (!repeatCheck(array)) {
     return 'não é possível gerar um número de telefone com esses valores';
   }
-  telephoneNumber = numberFormatting(telephoneNumber);
+  let telephoneNumber = numberFormatting(array);
   return telephoneNumber.join('');
 }
 
