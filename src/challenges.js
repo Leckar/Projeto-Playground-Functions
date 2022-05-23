@@ -29,20 +29,24 @@ function footballPoints(wins, ties) {
 }
 
 // Desafio 6
-function highestCount(array) {
+function numberCount(number, array) {
   let highestNumberCount = 0;
+  for (const i in array) {
+    if (array[i] === number) {
+      highestNumberCount += 1;
+    }
+  }
+  return highestNumberCount;
+}
+
+function highestCount(array) {
   let highestNumber = array[0];
   for (const i in array) {
     if (array[i] > highestNumber) {
       highestNumber = array[i];
     }
   }
-  for (const i in array) {
-    if (array[i] === highestNumber) {
-      highestNumberCount += 1;
-    }
-  }
-  return highestNumberCount;
+  return numberCount(highestNumber, array);
 }
 
 // Desafio 7
@@ -62,86 +66,81 @@ function catAndMouse(mouse, cat1, cat2) {
 }
 
 // Desafio 8
-function fizzBuzz(array) {
-  const fizzBuzzer = [];
-  for (const i in array) {
-    if (array[i] % 3 === 0 && array[i] % 5 === 0) {
-      fizzBuzzer.push('fizzBuzz');
-    } else if (array[i] % 3 === 0) {
-      fizzBuzzer.push('fizz');
-    } else if (array[i] % 5 === 0) {
-      fizzBuzzer.push('buzz');
-    } else {
-      fizzBuzzer.push('bug!');
-    }
+function fizzBuzzer(element) {
+  if (element % 3 === 0 && element % 5 === 0) {
+    return 'fizzBuzz';
   }
-  return fizzBuzzer;
+  if (element % 3 === 0) {
+    return 'fizz';
+  }
+  if (element % 5 === 0) {
+    return 'buzz';
+  }
+  return 'bug!';
+}
+function fizzBuzz(array) {
+  const fizzBuzzResult = [];
+  for (const i of array) {
+    fizzBuzzResult.push(fizzBuzzer(i));
+  }
+  return fizzBuzzResult;
 }
 
 // Desafio 9
-function encode(string) {
-  let encodedString = [];
-  for (const i in string) {
-    switch (string[i]) {
-    case 'a':
-      encodedString[i] = '1';
-      break;
-    case 'e':
-      encodedString[i] = '2';
-      break;
-    case 'i':
-      encodedString[i] = '3';
-      break;
-    case 'o':
-      encodedString[i] = '4';
-      break;
-    case 'u':
-      encodedString[i] = '5';
-      break;
-    default:
-      encodedString[i] = string[i];
-      break;
+const cipher = {
+  a: '1',
+  e: '2',
+  i: '3',
+  o: '4',
+  u: '5',
+};
+function eCoder(element) {
+  let translate = element;
+  for (const key in cipher) {
+    if (key) {
+      translate = translate.replaceAll(key, cipher[key]);
     }
   }
-  return encodedString.join('');
+  return translate;
+}
+function dCoder(element) {
+  let translate = element;
+  for (const key in cipher) {
+    if (key) {
+      translate = translate.replaceAll(cipher[key], key);
+    }
+  }
+  return translate;
+}
+function encode(string) {
+  return eCoder(string);
 }
 function decode(string) {
-  let decodedString = [];
-  for (const letter in string) {
-    switch (string[letter]) {
-    case '1':
-      decodedString[letter] = 'a';
-      break;
-    case '2':
-      decodedString[letter] = 'e';
-      break;
-    case '3':
-      decodedString[letter] = 'i';
-      break;
-    case '4':
-      decodedString[letter] = 'o';
-      break;
-    case '5':
-      decodedString[letter] = 'u';
-      break;
-    default:
-      decodedString[letter] = string[letter];
-      break;
-    }
-  }
-  return decodedString.join('');
+  return dCoder(string);
 }
 
 // Desafio 10
-function techList(array, string) {
+function checkValidity(array, string) {
   if (array === undefined || string === undefined || array.length === 0 || string.length === 0) {
+    return false;
+  }
+  return true;
+}
+function techObject(array, string) {
+  let tempObject = [];
+  for (const i in array) {
+    if (i) {
+      tempObject[i] = { tech: array[i], name: string };
+    }
+  }
+  return tempObject;
+}
+function techList(array, string) {
+  if (!checkValidity(array, string)) {
     return 'Vazio!';
   }
-  let techObject = [];
-  for (const i in array) {
-    techObject[i] = { tech: array.sort()[i], name: string };
-  }
-  return techObject;
+  let sortedTechs = array.sort();
+  return techObject(sortedTechs, string);
 }
 
 module.exports = {
