@@ -13,7 +13,7 @@ function calcArea(base, height) {
 
 // Desafio 3
 function splitSentence(string) {
-  let splittedSentence = string.split(' ');
+  const splittedSentence = string.split(' ');
   return splittedSentence;
 }
 
@@ -51,18 +51,15 @@ function highestCount(array) {
 
 // Desafio 7
 function catAndMouse(mouse, cat1, cat2) {
-  let cat1Distance = Math.abs(mouse - cat1);
-  let cat2Distance = Math.abs(mouse - cat2);
-  let winner;
+  const cat1Distance = Math.abs(mouse - cat1);
+  const cat2Distance = Math.abs(mouse - cat2);
   if (cat1Distance === cat2Distance) {
     return 'os gatos trombam e o rato foge';
   }
   if (cat1Distance > cat2Distance) {
-    winner = 'cat2';
-  } else {
-    winner = 'cat1';
+    return 'cat2';
   }
-  return winner;
+  return 'cat1';
 }
 
 // Desafio 8
@@ -94,8 +91,8 @@ const cipher = {
   o: '4',
   u: '5',
 };
-function eCoder(element) {
-  let translate = element;
+function encode(string) {
+  let translate = string;
   for (const key in cipher) {
     if (key) {
       translate = translate.replaceAll(key, cipher[key]);
@@ -103,20 +100,14 @@ function eCoder(element) {
   }
   return translate;
 }
-function dCoder(element) {
-  let translate = element;
+function decode(string) {
+  let translate = string;
   for (const key in cipher) {
     if (key) {
       translate = translate.replaceAll(cipher[key], key);
     }
   }
   return translate;
-}
-function encode(string) {
-  return eCoder(string);
-}
-function decode(string) {
-  return dCoder(string);
 }
 
 // Desafio 10
@@ -127,7 +118,7 @@ function checkValidity(array, string) {
   return true;
 }
 function techObject(array, string) {
-  let tempObject = [];
+  const tempObject = [];
   for (const i in array) {
     if (i) {
       tempObject[i] = { tech: array[i], name: string };
@@ -139,7 +130,7 @@ function techList(array, string) {
   if (!checkValidity(array, string)) {
     return 'Vazio!';
   }
-  let sortedTechs = array.sort();
+  const sortedTechs = array.sort();
   return techObject(sortedTechs, string);
 }
 

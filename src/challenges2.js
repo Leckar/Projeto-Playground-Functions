@@ -77,7 +77,7 @@ function numberSum(array) {
   return sum;
 }
 function hydrate(string) {
-  let integerGet = string.match(/\d+/g);
+  const integerGet = string.match(/\d+/g);
   const integerSum = numberSum(integerGet);
   if (integerSum === 1) {
     return `${integerSum} copo de água`;
