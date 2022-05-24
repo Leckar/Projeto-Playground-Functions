@@ -1,19 +1,27 @@
 // Desafio 11
-function repeatCheck(array) {
+function elementSizeCheck(element) {
+  if (element < 0 || element > 9) {
+    return false;
+  }
+  return true;
+}
+function repeatCounter(element, array) {
+  let repeatCount = 0;
   for (const i in array) {
-    let repeatCount = 0;
-    if (array[i] < 0 || array[i] > 9) {
+    if (element === array[i]) {
+      repeatCount += 1;
+    }
+  }
+  return repeatCount;
+}
+function repeatCheck(array) {
+  for (const item of array) {
+    if (!elementSizeCheck(item)) {
       return false;
     }
-    for (const ind in array) {
-      if (array[i] === array[ind]) {
-        repeatCount += 1;
-      }
-    }
-    if (repeatCount >= 3) {
+    if (repeatCounter(item, array) >= 3) {
       return false;
     }
-    repeatCount = 0;
   }
   return true;
 }
@@ -31,17 +39,30 @@ function generatePhoneNumber(array) {
   if (!repeatCheck(array)) {
     return 'não é possível gerar um número de telefone com esses valores';
   }
-  let telephoneNumber = numberFormatting(array);
-  return telephoneNumber.join('');
+  return numberFormatting(array).join('');
 }
 
 // Desafio 12
-function triangleCheck(lineA, lineB, lineC) {
-  if (Math.abs(lineA - lineB) >= lineC
-  || Math.abs(lineB - lineC) >= lineA
-  || Math.abs(lineA - lineC) >= lineB) {
+function sumCheck(lineA, lineB, lineC) {
+  const sumAB = lineA + lineB;
+  const sumAC = lineA + lineC;
+  const sumBC = lineB + lineC;
+  if (sumAB <= lineC || sumBC <= lineA || sumAC <= lineB) {
     return false;
-  } if ((lineA + lineB) <= lineC || (lineC + lineB) <= lineA || (lineA + lineC) <= lineB) {
+  }
+  return true;
+}
+function moduleCheck(lineA, lineB, lineC) {
+  const moduleAB = Math.abs(lineA - lineB);
+  const moduleAC = Math.abs(lineA - lineC);
+  const moduleBC = Math.abs(lineB - lineC);
+  if (moduleAB >= lineC || moduleBC >= lineA || moduleAC >= lineB) {
+    return false;
+  }
+  return sumCheck(lineA, lineB, lineC);
+}
+function triangleCheck(lineA, lineB, lineC) {
+  if (!moduleCheck(lineA, lineB, lineC)) {
     return false;
   }
   return true;
@@ -50,8 +71,8 @@ function triangleCheck(lineA, lineB, lineC) {
 // Desafio 13
 function numberSum(array) {
   let sum = 0;
-  for (const i in array) {
-    sum += parseInt(array[i], 10);
+  for (const i of array) {
+    sum += parseInt(i, 10);
   }
   return sum;
 }
